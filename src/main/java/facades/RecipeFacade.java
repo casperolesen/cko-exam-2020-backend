@@ -1,6 +1,8 @@
 package facades;
 
+import dtos.IngredientDTO;
 import dtos.RecipeDTO;
+import entities.Ingredient;
 import entities.Recipe;
 import entities.RenameMe;
 import java.util.ArrayList;
@@ -57,7 +59,18 @@ public class RecipeFacade {
         List<Recipe> recipes = query.getResultList();
         List<RecipeDTO> res = new ArrayList<>();
         recipes.forEach(r -> {
-            res.add(new RecipeDTO(r));
+            System.out.println("No of Ingredients: " + r.getIngredients().size());
+            System.out.println(r.getIngredients());
+            List<Ingredient> ing = r.getIngredients();
+            List<IngredientDTO> ingDTO = new ArrayList();
+            
+            ing.forEach(i -> {
+                ingDTO.add(new IngredientDTO(i));
+            });
+            
+            RecipeDTO rDTO = new RecipeDTO(r);
+            rDTO.setIngredients(ingDTO);
+            res.add(rDTO);
         });
 
         return res;

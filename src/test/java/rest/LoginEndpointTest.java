@@ -105,9 +105,9 @@ public class LoginEndpointTest {
             Ingredient ing9 = new Ingredient(9, item3);
 
             // create recipes
-            Recipe recipe1 = new Recipe("1 hour(s)", "Directions for recipe 1");
-            Recipe recipe2 = new Recipe("2 hour(s)", "Directions for recipe 2");
-            Recipe recipe3 = new Recipe("3 hour(s)", "Directions for recipe 3");
+            Recipe recipe1 = new Recipe("Recipe 1", "1 hour(s)", "Directions for recipe 1");
+            Recipe recipe2 = new Recipe("Recipe 2", "2 hour(s)", "Directions for recipe 2");
+            Recipe recipe3 = new Recipe("Recipe 3", "3 hour(s)", "Directions for recipe 3");
 
             // set ingredients on recipes
             recipe1.addIngredient(ing1);

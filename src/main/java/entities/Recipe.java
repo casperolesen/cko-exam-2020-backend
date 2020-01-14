@@ -27,13 +27,15 @@ public class Recipe implements Serializable {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients = new ArrayList();
 
+    private String name;
     private String prepTime;
     private String directions;
 
     @ManyToMany(mappedBy = "recipes")
     private List<Menu> menues = new ArrayList();
 
-    public Recipe(String prepTime, String directions) {
+    public Recipe(String name, String prepTime, String directions) {
+        this.name = name;
         this.prepTime = prepTime;
         this.directions = directions;
     }
@@ -48,6 +50,16 @@ public class Recipe implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    
 
     public List<Ingredient> getIngredients() {
         return ingredients;
