@@ -40,6 +40,15 @@ public class Recipe implements Serializable {
         this.directions = directions;
     }
 
+    public Recipe(Long id, String name, String prepTime, String directions) {
+        this.id = id;
+        this.name = name;
+        this.prepTime = prepTime;
+        this.directions = directions;
+    }
+    
+    
+
     public Recipe() {
     }
 

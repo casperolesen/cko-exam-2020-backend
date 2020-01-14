@@ -87,11 +87,13 @@ public class LoginEndpointTest {
             Item item1 = new Item("Item 1", 14.95);
             Item item2 = new Item("Item 2", 24.95);
             Item item3 = new Item("Item 3", 44.95);
+            Item item4 = new Item("Item 4", 99.95);
 
             // set storage on items
             item1.setStorage(new Storage(10));
             item2.setStorage(new Storage(20));
             item3.setStorage(new Storage(30));
+            item4.setStorage(new Storage(0));
 
             // create ingredients
             Ingredient ing1 = new Ingredient(1, item1);
@@ -103,11 +105,19 @@ public class LoginEndpointTest {
             Ingredient ing7 = new Ingredient(7, item1);
             Ingredient ing8 = new Ingredient(8, item2);
             Ingredient ing9 = new Ingredient(9, item3);
+            Ingredient ing10 = new Ingredient(10, item4);
 
             // create recipes
             Recipe recipe1 = new Recipe("Recipe 1", "1 hour(s)", "Directions for recipe 1");
             Recipe recipe2 = new Recipe("Recipe 2", "2 hour(s)", "Directions for recipe 2");
             Recipe recipe3 = new Recipe("Recipe 3", "3 hour(s)", "Directions for recipe 3");
+            Recipe recipe4 = new Recipe("Recipe 4 (No stock)", "4 hour(s)", "Directions for recipe 4");
+            Recipe recipe5 = new Recipe("Recipe 5", "5 hour(s)", "Directions for recipe 5");
+            Recipe recipe6 = new Recipe("Recipe 6", "6 hour(s)", "Directions for recipe 6");
+            Recipe recipe7 = new Recipe("Recipe 7", "7 hour(s)", "Directions for recipe 7");
+            Recipe recipe8 = new Recipe("Recipe 8", "8 hour(s)", "Directions for recipe 8");
+            Recipe recipe9 = new Recipe("Recipe 9", "9 hour(s)", "Directions for recipe 9");
+            Recipe recipe10 = new Recipe("Recipe 10", "10 hour(s)", "Directions for recipe 10");
 
             // set ingredients on recipes
             recipe1.addIngredient(ing1);
@@ -121,6 +131,8 @@ public class LoginEndpointTest {
             recipe3.addIngredient(ing7);
             recipe3.addIngredient(ing8);
             recipe3.addIngredient(ing9);
+            
+            recipe4.addIngredient(ing10);
             
             // create menues
             Menu menu1 = new Menu(1, 2020);
@@ -145,15 +157,19 @@ public class LoginEndpointTest {
             em.persist(item2);
             em.persist(item3);
 
-//            // add recipes
-//            em.persist(recipe1);
-//            em.persist(recipe2);
-//            em.persist(recipe3);
-            
-            // add menues
+            // add menues incl. recipes
             em.persist(menu1);
             em.persist(menu2);
             em.persist(menu3);
+            
+            // add recipes without menu
+            em.persist(recipe4);
+            em.persist(recipe5);
+            em.persist(recipe6);
+            em.persist(recipe7);
+            em.persist(recipe8);
+            em.persist(recipe9);
+            em.persist(recipe10);
 
             Role userRole = new Role("user");
             Role adminRole = new Role("admin");
