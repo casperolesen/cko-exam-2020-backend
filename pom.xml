@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dat.sem3.security</groupId>
-    <artifactId>CA3</artifactId>
+    <artifactId>cko-exam-2020-backend</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>CA3</name>
+    <name>cko-exam-2020-backend</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
