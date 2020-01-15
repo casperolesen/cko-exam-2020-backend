@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import utils.EMF_Creator;
 import facades.FacadeExample;
 import facades.RecipeFacade;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -54,6 +55,7 @@ public class RecipeResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     public Response addRecipe(String content) {
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         System.out.println("ADD: " + json);
@@ -72,6 +74,7 @@ public class RecipeResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     public Response editRecipe(String content) {
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         System.out.println("EDIT: " + json);
@@ -91,6 +94,7 @@ public class RecipeResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
+    @RolesAllowed("admin")
     public Response deleteRecipe(String content) {
         JsonObject json = new JsonParser().parse(content).getAsJsonObject();
         String id = json.get("id").getAsString();

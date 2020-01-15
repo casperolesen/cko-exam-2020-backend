@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.security.RolesAllowed;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -50,11 +51,19 @@ public class MenuResource {
         long count = FACADE.getMenuCount();
         return "{\"count\":" + count + "}";  //Done manually so no need for a DTO
     }
+    
+    @Path("all")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getMenuAll() {
+        return Response.ok(FACADE.getMenuAll()).build();
+    }
 
     @Path("add")
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     public Response addMenu(String content) {
         JsonArray json = new JsonParser().parse(content).getAsJsonArray();
         RecipeDTO recipes[] = GSON.fromJson(json, RecipeDTO[].class);

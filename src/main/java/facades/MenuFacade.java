@@ -1,13 +1,18 @@
 package facades;
 
+import dtos.IngredientDTO;
+import dtos.MenuDTO;
 import dtos.RecipeDTO;
+import entities.Ingredient;
 import entities.Menu;
 import entities.Recipe;
 import entities.RenameMe;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -49,6 +54,30 @@ public class MenuFacade {
             em.close();
         }
         
+    }
+    
+        public List<MenuDTO> getMenuAll() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Menu> query = em.createQuery("SELECT m FROM Menu m", Menu.class);
+        List<Menu> menues = query.getResultList();
+        List<MenuDTO> res = new ArrayList<>();
+        menues.forEach(m -> {
+            List<Recipe> rec = m.getRecipes();
+            System.out.println("No of recipes: " + rec.size());
+            List<RecipeDTO> recDTO = new ArrayList();
+
+            rec.forEach(r -> {
+                recDTO.add(new RecipeDTO(r));
+            });
+            
+            System.out.println("No of recipeDTO: " + recDTO.size());
+
+            MenuDTO mDTO = new MenuDTO(m);
+            mDTO.setRecipes(recDTO);
+            res.add(mDTO);
+        });
+
+        return res;
     }
     
     public Menu addMenu(List<RecipeDTO> recipes) {
