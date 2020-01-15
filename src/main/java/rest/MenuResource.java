@@ -30,7 +30,7 @@ public class MenuResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(
             "pu",
-            "jdbc:mysql://localhost:3307/cko_exam_2020_test",
+            "jdbc:mysql://localhost:3307/cko_exam_2020",
             "dev",
             "ax2",
             EMF_Creator.Strategy.CREATE);
